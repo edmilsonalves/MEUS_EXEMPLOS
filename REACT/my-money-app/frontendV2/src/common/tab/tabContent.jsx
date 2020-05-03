@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import If from '../operator/if'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { tab } from "../../common/tab/tab.slice";
+import If from "../operator/if";
 
-class TabContent extends Component {
-    render() {
-        const selected = this.props.tab.selected === this.props.id
-        const visible = this.props.tab.visible[this.props.id]
-        return (
-            <If test={visible}>
-                <div id={this.props.id}
-                    className={`tab-pane ${selected ? 'active' : ''}`}> 
-                    {this.props.children}
-                </div> 
-            </If>
-        )
-    }
-}
+const TabContent = (props) => {
+  const stateTab = useSelector(tab);
+  const selected = stateTab.selected === props.id;
 
-const mapStateToProps = state => ({tab: state.tab})
-export default connect(mapStateToProps)(TabContent)
+  const [visible, setVisible] = useState(true);
+
+  return (
+    <If test={visible}>
+      <div id={props.id} className={`tab-pane ${selected ? "active" : ""}`}>
+        {props.children}
+      </div>
+    </If>
+  );
+};
+
+export default TabContent;
