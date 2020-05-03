@@ -1,21 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Content from "../common/template/content";
 import ContentHeader from "../common/template/contentHeader";
 import ValueBox from "../common/widget/valueBox";
-import { summary, setSummary } from "./dashboard.slice";
-import axios from "axios";
-
-const BASE_URL = "http://localhost:3003/api";
+// import { summary, setSummary, setDebt } from "./dashboard.slice";
+import { getSummary } from "./dashboardService";
 
 const Dashboard = (props) => {
   const dispatch = useDispatch();
-  const { credit, debt } = useSelector(summary);
+  // const { credit, debt } = useSelector(summary);
 
-  useEffect(() => {
-    axios
-      .get(`${BASE_URL}/billingCycles/summary`)
-      .then((resp) => dispatch(setSummary(resp.data)));
+  const [credit, setCredit] = useState(0);
+  const [debt, setDebt] = useState(0);
+
+  useEffect(async () => {
+    const summary = await getSummary();
+    if (summary) {
+      setCredit(summary.credit);
+      setDebt(summary.debt);
+    }
+    // dispatch(setSummary(summary));
   }, []);
 
   return (
