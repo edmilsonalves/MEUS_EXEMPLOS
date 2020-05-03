@@ -7,15 +7,10 @@ import { summary, setSummary } from "./dashboard.slice";
 
 const Dashboard = (props) => {
   const dispatch = useDispatch();
-  // const { credit, debt } = useSelector(summary);
-
-  const { credit, debt } = useSelector((state) => ({
-    credit: state.dashboard.summary.credit,
-    debt: state.dashboard.summary.debt,
-  }));
+  const { credit, debt } = useSelector(summary);
 
   useEffect(() => {
-    dispatch(setSummary({ summary: { credit: 250, debt: 70 } }));
+    dispatch(setSummary({ credit: 250, debt: 70 }));
   }, []);
 
   return (
