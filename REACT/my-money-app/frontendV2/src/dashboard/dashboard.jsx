@@ -1,12 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Content from "../common/template/content";
 import ContentHeader from "../common/template/contentHeader";
 import ValueBox from "../common/widget/valueBox";
-import { summary } from "./dashboard.slice";
+import { summary, setSummary } from "./dashboard.slice";
 
 const Dashboard = (props) => {
-  const { credit, debt } = useSelector(summary);
+  const dispatch = useDispatch();
+  // const { credit, debt } = useSelector(summary);
+
+  const { credit, debt } = useSelector((state) => ({
+    credit: state.dashboard.summary.credit,
+    debt: state.dashboard.summary.debt,
+  }));
+
+  useEffect(() => {
+    dispatch(setSummary({ summary: { credit: 250, debt: 70 } }));
+  }, []);
 
   return (
     <div>

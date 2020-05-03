@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const DashboardSlice = createSlice({
   name: "dashboard",
-  initialState: { summary: { credit: 100, debt: 50 } },
+  initialState: { summary: { credit: 0, debt: 0 } },
   reducers: {
     setSummary: (state, action) => {
-      state = action.payload;
+      state = { ...state, summary: action.payload };
     },
   },
 });
