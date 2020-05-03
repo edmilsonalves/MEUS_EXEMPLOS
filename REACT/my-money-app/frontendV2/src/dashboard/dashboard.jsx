@@ -4,13 +4,18 @@ import Content from "../common/template/content";
 import ContentHeader from "../common/template/contentHeader";
 import ValueBox from "../common/widget/valueBox";
 import { summary, setSummary } from "./dashboard.slice";
+import axios from "axios";
+
+const BASE_URL = "http://localhost:3003/api";
 
 const Dashboard = (props) => {
   const dispatch = useDispatch();
   const { credit, debt } = useSelector(summary);
 
   useEffect(() => {
-    dispatch(setSummary({ credit: 10, debt: 20 }));
+    axios
+      .get(`${BASE_URL}/billingCycles/summary`)
+      .then((resp) => dispatch(setSummary(resp.data)));
   }, []);
 
   return (

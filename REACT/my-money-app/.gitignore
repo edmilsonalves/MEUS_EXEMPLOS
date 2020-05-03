@@ -19,6 +19,7 @@
 package-lock.json
 /modern-react-redux
 /react-redux
+/backendV2
 
 npm-debug.log*
 yarn-debug.log*
