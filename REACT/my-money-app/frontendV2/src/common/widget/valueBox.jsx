@@ -1,5 +1,4 @@
 import React from "react";
-import Grid from "../layout/grid";
 
 export default (props) => (
   <div className="col-xs12 col-sm-4">
