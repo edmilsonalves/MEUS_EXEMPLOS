@@ -5,7 +5,9 @@ export const DashboardSlice = createSlice({
   initialState: { summary: { credit: 0, debt: 0 } },
   reducers: {
     setSummary: (state, action) => {
-      state = { ...state, summary: action.payload };
+      if (state.summary) {
+        state.summary = action.payload;
+      }
     },
   },
 });

@@ -10,7 +10,7 @@ const Dashboard = (props) => {
   const { credit, debt } = useSelector(summary);
 
   useEffect(() => {
-    dispatch(setSummary({ credit: 250, debt: 70 }));
+    dispatch(setSummary({ credit: 10, debt: 20 }));
   }, []);
 
   return (
