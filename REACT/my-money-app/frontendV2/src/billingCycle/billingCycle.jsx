@@ -6,14 +6,19 @@ import TabsHeader from "../common/tab/tabsHeader";
 import TabHeader from "../common/tab/tabHeader";
 import TabsContent from "../common/tab/tabsContent";
 import TabContent from "../common/tab/tabContent";
-import { selectTab } from "../common/tab/tab.slice";
+import { selectTab, showTabs } from "../common/tab/tab.slice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default (props) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const init = () => {
     dispatch(selectTab("tabList"));
+    dispatch(showTabs(["tabList", "tabCreate"]));
+  };
+
+  useEffect(() => {
+    init();
   }, []);
 
   return (

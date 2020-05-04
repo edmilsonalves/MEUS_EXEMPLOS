@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const TabsSlice = createSlice({
   name: "tab",
-  initialState: { selected: "" },
+  initialState: { selected: "", visible: [] },
   reducers: {
     selectTab: (state, action) => {
       state.selected = action.payload;
@@ -17,7 +17,7 @@ export const TabsSlice = createSlice({
   },
 });
 
-export const { selectTab } = TabsSlice.actions;
+export const { selectTab, showTabs } = TabsSlice.actions;
 export const tab = (state) => state.tab;
 
 export default TabsSlice.reducer;

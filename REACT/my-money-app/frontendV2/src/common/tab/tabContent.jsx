@@ -6,8 +6,7 @@ import If from "../operator/if";
 const TabContent = (props) => {
   const stateTab = useSelector(tab);
   const selected = stateTab.selected === props.id;
-
-  const [visible, setVisible] = useState(true);
+  const visible = stateTab.visible[props.id];
 
   return (
     <If test={visible}>

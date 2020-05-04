@@ -7,9 +7,10 @@ const TabHeader = (props) => {
   const dispatch = useDispatch();
 
   const stateTab = useSelector(tab);
-  const selected = stateTab.selected === props.target;
 
-  const [visible, setVisible] = useState(true);
+  const selected = stateTab.selected === props.target;
+  const visible = stateTab.visible[props.target];
+  // const [visible, setVisible] = useState(true);
 
   return (
     <If test={visible}>
